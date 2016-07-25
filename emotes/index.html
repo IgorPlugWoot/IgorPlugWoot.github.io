@@ -126,26 +126,34 @@
                 <table class="table table-striped table-hover table-condensed table-bordered table-responsive">\
                 <tbody>';
                 
-        for (var i in emotes){
-            if (!cont)
-                html += '<tr>';
-            html += '<td>\
-                        <div class="emotes" align="center">\
-                            <img src="' + emotes[i].url + '">\
-                            <br/>\
-                            <span>:' + i + ':</span>\
-                        </div>\
-                    </td>'
-            cont++;
-            
-            if ( cont==max ){
-                html += '</tr>';
-                cont=0;
-            }
-        }           
-        html += '</tbody>\
-                </table>';
-        cont = 0;
+for (var i in emotes){
+			html += (!html ? '' : '<br/><br/>') + '\
+					<h2>' + i + '</h2>\
+					<table style="width: 100%;">\
+					<tbody>';
+					
+			for (var j in emotes[i]){
+				if ( !cont )
+					html += '<tr>';
+				
+				html += '<td>\
+							<div class="emotes" align="center">\
+								<img src="' + emotes[i][j].url + '">\
+								<br/>\
+								<span>:' + j + ':</span>\
+							</div>\
+						</td>'
+				cont++;
+				
+				if ( cont==max ){
+					html += '</tr>';
+					cont=0;
+				}
+			}			
+			html += '</tbody>\
+					</table>';
+			cont = 0;
+		}
         var table = document.getElementById('tables');
         if (!table)
             return;
